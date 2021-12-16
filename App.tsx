@@ -18,15 +18,15 @@ export default function App() {
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold
-  })
+  });
 
   if(!fontsLoaded) {
     return <AppLoading />
+  } else {
+    return (
+      <ThemeProvider theme={theme}>
+        <Dashboard />
+      </ThemeProvider>
+    );
   }
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Dashboard />
-    </ThemeProvider>
-  );
 }
