@@ -69,4 +69,5 @@ export default {
     font-family: ${({theme}) => theme.fonts.regular};
     margin-bottom: 16px;
   `,
+  TransactionList: styled.FlatList``,
 }

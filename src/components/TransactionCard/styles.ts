@@ -9,6 +9,7 @@ export default {
     background-color: ${({theme}) => theme.colors.shape};
     border-radius: 5px;
     padding: 17px 24px;
+    margin-bottom: 16px;
   `,
   TextTitle: styled.Text`
     font-family: ${({theme}) => theme.fonts.regular};
