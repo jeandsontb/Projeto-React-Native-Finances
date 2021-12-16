@@ -8,6 +8,7 @@ interface ICategory {
 }
 
 interface IData {
+  type: 'positive' | 'negative';
   title: string;
   amount: string;
   category: ICategory;
@@ -23,11 +24,14 @@ export default ({ data }: IResponseProps) => {
     <S.Container>
       <S.TextTitle>{data.title}</S.TextTitle>
 
-      <S.TextAmount>{data.amount}</S.TextAmount>
+      <S.TextAmount type={data.type} >
+        {data.type === 'negative' && '- '}
+        {data.amount}
+      </S.TextAmount>
 
       <S.BoxFooter>
         <S.BoxCategory>
-          <S.Icon name="dollar-sign" />
+          <S.Icon name={data.category.icon} />
           <S.TextCategoryName>{data.category.name}</S.TextCategoryName>
         </S.BoxCategory>
 

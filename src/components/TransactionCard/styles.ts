@@ -2,7 +2,9 @@ import styled from "styled-components/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Feather } from '@expo/vector-icons';
 
-
+interface ITransactionProps {
+  type: 'positive' | 'negative';
+}
 
 export default {
   Container: styled.View`
@@ -15,8 +17,10 @@ export default {
     font-family: ${({theme}) => theme.fonts.regular};
     font-size: ${RFValue(14)}px;
   `,
-  TextAmount: styled.Text`
+  TextAmount: styled.Text<ITransactionProps>`
     font-family: ${({theme}) => theme.fonts.regular};
+    color: ${({theme, type}) => 
+      type === 'positive' ? theme.colors.success :  theme.colors.attention};
     font-size: ${RFValue(20)}px;
     margin-top: 2px;
   `, 

@@ -10,6 +10,7 @@ const Dashboard = () => {
 
   const data = [
     {
+      type: 'positive',
       title: "Desenvolvimento de site",
       amount: "R$ 1.350,00",
       category: {
@@ -19,20 +20,22 @@ const Dashboard = () => {
       date: "12/12/2020"
     },
     {
-      title: "Desenvolvimento de site",
+      type: 'negative',
+      title: "Hamburgueria",
       amount: "R$ 1.350,00",
       category: {
-        name: 'Vendas',
-        icon: 'dollar-sign'
+        name: 'Alimentação',
+        icon: 'coffee'
       },
       date: "12/12/2020"
     },
     {
-      title: "Desenvolvimento de site",
+      type: 'negative',
+      title: "Aluguel do apartamento",
       amount: "R$ 1.350,00",
       category: {
         name: 'Vendas',
-        icon: 'dollar-sign'
+        icon: 'shopping-bag'
       },
       date: "12/12/2020"
     }
