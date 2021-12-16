@@ -59,4 +59,14 @@ export default {
     position: absolute;
     margin-top: ${RFPercentage(20)}px;
   `,
+  BoxTransaction: styled.View`
+    flex: 1;
+    padding: 0 24px;
+    margin-top: ${RFPercentage(8)}px;
+  `,
+  TextTransaction: styled.Text`
+    font-size: ${RFValue(18)}px;
+    font-family: ${({theme}) => theme.fonts.regular};
+    margin-bottom: 16px;
+  `,
 }

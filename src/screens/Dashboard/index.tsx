@@ -1,6 +1,8 @@
 import React from 'react';
 
 import HighLighCard from '../../components/HighLighCard';
+import TransactionCard from '../../components/TransactionCard';
+
 import S from './styles';
 
 const Dashboard = () => {
@@ -41,6 +43,13 @@ const Dashboard = () => {
           lastTransaction="Última entrada dia 13 de abril" 
         />
       </S.BoxHighLighCards>
+
+      <S.BoxTransaction>
+        <S.TextTransaction>Listagem</S.TextTransaction>
+
+        <TransactionCard />
+        
+      </S.BoxTransaction>
     </S.Container>
   );
 }
