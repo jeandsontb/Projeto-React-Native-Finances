@@ -1,14 +1,22 @@
 import React, {useState} from 'react';
 import { Modal } from 'react-native';
+import { useForm } from 'react-hook-form';
 
 import S from './styles';
-import Input from '../../components/Forms/Input';
+import InputForm from '../../components/Forms/InputForm';
 import Button from '../../components/Forms/Button';
 import TransactionTypeButton from '../../components/Forms/TransactionTypeButton';
 import CategorySelectButton from '../../components/Forms/CategorySelectButton';
 import { CategorySelect } from '../CategorySelect';
 
+interface IFormData {
+  name: string;
+  amount: string;
+}
+
 export default () => {
+
+  const { control, handleSubmit } = useForm();
 
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
@@ -29,6 +37,17 @@ export default () => {
     setCategoryModalOpen(false);
   }
 
+  const handleRegister = (form: IFormData) => {
+    const data = {
+      name: form.name,
+      amount: form.amount,
+      transactionType,
+      category: category.key
+    }
+
+    console.log(data);
+  }
+
   return (
     <S.Container>
       <S.BoxHeader>
@@ -37,11 +56,15 @@ export default () => {
 
       <S.Form>
         <S.BoxFields>
-          <Input 
+          <InputForm 
+            name='name'
+            control={control}
             placeholder='Nome'
           />
 
-          <Input 
+          <InputForm 
+            name='amount'
+            control={control}
             placeholder='Preço'
           />
 
@@ -66,7 +89,7 @@ export default () => {
           />
         </S.BoxFields>
 
-        <Button title="Enviar" />
+        <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
       </S.Form>
 
       <Modal visible={categoryModalOpen}>
