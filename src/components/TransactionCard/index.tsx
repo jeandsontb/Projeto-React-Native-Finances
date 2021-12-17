@@ -7,7 +7,7 @@ interface ICategory {
   icon: string;
 }
 
-interface IData {
+export interface IDataTransactionCardProps {
   type: 'positive' | 'negative';
   title: string;
   amount: string;
@@ -16,7 +16,7 @@ interface IData {
 }
 
 interface IResponseProps {
-  data: IData;
+  data: IDataTransactionCardProps;
 }
 
 export default ({ data }: IResponseProps) => {

@@ -1,7 +1,11 @@
 import styled from 'styled-components/native';
+import { FlatList, FlatListProps } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
+
+import { IDataListProps } from '.';
 
 export default {
   Container: styled.View`
@@ -69,5 +73,12 @@ export default {
     font-family: ${({theme}) => theme.fonts.regular};
     margin-bottom: 16px;
   `,
-  TransactionList: styled.FlatList``,
+  TransactionList: styled(
+    FlatList as new (props: FlatListProps<IDataListProps>) => FlatList<IDataListProps>
+    ).attrs({
+    showsVerticalScrollIndicator: false,
+    contentContainerStyle: {
+      paddingBottom: getBottomSpace() 
+    }
+  })``,
 }
