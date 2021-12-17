@@ -8,9 +8,10 @@ import S from './styles';
 interface IProps extends TextInputProps {
   control: Control;
   name: string;
+  error: string;
 }
 
-export default ({control, name, ...rest}: IProps) => {
+export default ({control, name, error, ...rest}: IProps) => {
   return (
     <S.Container>
       <Controller
@@ -24,6 +25,8 @@ export default ({control, name, ...rest}: IProps) => {
         )}
         name={name}
       />
+
+      {error && <S.TextError>{error}</S.TextError>}
     </S.Container>
   )
 }
