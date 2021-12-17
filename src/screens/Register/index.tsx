@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import S from './styles';
 import Input from '../../components/Forms/Input';
+import Button from '../../components/Forms/Button';
+import TransactionTypeButton from '../../components/Forms/TransactionTypeButton';
 
 export default () => {
+
+  const [transactionType, setTransactionType] = useState('');
+
+  const handleTransactionSelect = (type: 'up' | 'down') => {
+    setTransactionType(type);
+  }
+
   return (
     <S.Container>
       <S.BoxHeader>
@@ -11,13 +20,32 @@ export default () => {
       </S.BoxHeader>
 
       <S.Form>
-        <Input 
-          placeholder='Nome'
-        />
+        <S.BoxFields>
+          <Input 
+            placeholder='Nome'
+          />
 
-        <Input 
-          placeholder='Preço'
-        />
+          <Input 
+            placeholder='Preço'
+          />
+
+          <S.BoxTransactionsTypes>
+            <TransactionTypeButton 
+              type="up"
+              title='Income'
+              onPress={() => handleTransactionSelect('up')}
+              isActive={transactionType === 'up'}
+            />
+            <TransactionTypeButton 
+              type="down"
+              title='Outcome'
+              onPress={() => handleTransactionSelect('down')}
+              isActive={transactionType === 'down'}
+            />
+          </S.BoxTransactionsTypes>
+        </S.BoxFields>
+
+        <Button title="Enviar" />
       </S.Form>
     </S.Container>
   );

@@ -23,5 +23,11 @@ export default {
     flex: 1;
     width: 100%;
     padding: 24px;
+    justify-content: space-between;
+  `,
+  BoxFields: styled.View``,
+  BoxTransactionsTypes: styled.View`
+    flex-direction: row;
+    justify-content: space-between;
   `,
 }
