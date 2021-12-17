@@ -21,7 +21,7 @@ O layout foi desenvolvido pela equipe da Rocketseat
 ### Mobile
 
 <p align="center">
-  <img alt="Fin" title="#Fin" src="" width="200px">
+  <img alt="Fin" title="#Fin" src="https://raw.githubusercontent.com/jeandsontb/Projeto-React-Native-Finances/main/screen/finances.jpg" width="200px">
 </p>
 
 ## 🛠 Tecnologias
