@@ -60,7 +60,10 @@ const Dashboard = () => {
             </S.BoxUser>
           </S.BoxUserInfo>
 
-          <S.IconPower name="power"/>
+          <S.BoxLogoutButton onPress={() => {}} >
+            <S.IconPower name="power"/>
+          </S.BoxLogoutButton>
+
         </S.BoxComponent>
       </S.BoxHeader>
 

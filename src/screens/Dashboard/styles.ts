@@ -4,6 +4,7 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 import { IDataListProps } from '.';
 
@@ -50,6 +51,7 @@ export default {
     font-size: ${RFValue(18)}px;
     font-family: ${({theme}) => theme.fonts.bold};
   `,
+  BoxLogoutButton: styled(BorderlessButton)``,
   IconPower: styled(Feather)`
     color: ${({theme}) => theme.colors.secondary};
     font-size: ${RFValue(24)}px;
