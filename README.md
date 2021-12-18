@@ -34,6 +34,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Vector Icons][vector-icons]
 - [Async Storage][asyncStorage]
 - [Style Components][styled-components]
+- [React-Native-Responsive-FontSize][reactresponsive]
+- [React-Native-Iphone-X-Helper][iphonexhelper]
 
 ## 💡 Como executar o projeto
 
@@ -82,3 +84,5 @@ Feito por Jeandson Tenorio 👋🏽 [Entre em contato!](https://www.linkedin.com
 [date-picker]: https://www.npmjs.com/package/react-native-date-picker
 [image-picker]: https://github.com/react-native-image-picker/react-native-image-picker
 [vector-icons]: https://github.com/oblador/react-native-vector-icons
+[reactresponsive]:https://www.npmjs.com/package/react-native-responsive-fontsize
+[iphonexhelper]:https://www.npmjs.com/package/react-native-iphone-x-helper
