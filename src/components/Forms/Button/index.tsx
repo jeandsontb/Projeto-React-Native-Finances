@@ -5,11 +5,12 @@ import S from './styles';
 
 interface IProps extends RectButtonProps {
   title: string;
+  onPress: () => void;
 }
 
-export default ({ title, ...rest }: IProps) => {
+export default ({ title, onPress, ...rest }: IProps) => {
   return (
-    <S.Button {...rest} >
+    <S.Button onPress={onPress} {...rest} >
       <S.TextTitleButton>
         { title }
       </S.TextTitleButton>
