@@ -1,5 +1,5 @@
 <h1 align="center">
-    PROJETO FINANÇAS
+    PROJETO FINANÇAS - GO FINANCE
 </h1>
 
 <h4 align="center"> 
