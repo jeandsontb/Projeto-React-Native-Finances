@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 import { RectButtonProps } from 'react-native-gesture-handler';
 
 import S from './styles';
@@ -10,10 +11,12 @@ interface IProps extends RectButtonProps {
 
 export default ({ title, onPress, ...rest }: IProps) => {
   return (
-    <S.Button onPress={onPress} {...rest} >
-      <S.TextTitleButton>
-        { title }
-      </S.TextTitleButton>
-    </S.Button>
+    <TouchableWithoutFeedback onPress={onPress} >
+      <S.Button {...rest} >
+        <S.TextTitleButton>
+          { title }
+        </S.TextTitleButton>
+      </S.Button>
+    </TouchableWithoutFeedback>
   )
 }

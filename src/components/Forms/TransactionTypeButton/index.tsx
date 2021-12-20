@@ -1,9 +1,9 @@
 import React from 'react';
-import { RectButtonProps } from 'react-native-gesture-handler';
+import { TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from 'react-native';
 
 import S from './styled';
 
-interface IProps extends RectButtonProps {
+interface IProps extends TouchableWithoutFeedbackProps {
   type: 'up' | 'down'
   title: string;
   isActive: boolean;
@@ -17,12 +17,14 @@ const icons = {
 export default ({type, title, isActive, ...rest}: IProps) => {
   return (
     <S.ButtonChoice type={type} isActive={isActive}>
-      <S.ButtonBorder {...rest}>
-        <S.IconChoiceButton name={icons[type]} type={type} />
-        <S.Title>
-          {title}
-        </S.Title>
-      </S.ButtonBorder>
+      <TouchableWithoutFeedback {...rest} >
+        <S.ButtonBorder>
+          <S.IconChoiceButton name={icons[type]} type={type} />
+          <S.Title>
+            {title}
+          </S.Title>
+        </S.ButtonBorder>
+      </TouchableWithoutFeedback>
     </S.ButtonChoice>
   );
 }

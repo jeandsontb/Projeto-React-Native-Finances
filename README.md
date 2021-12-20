@@ -36,6 +36,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Style Components][styled-components]
 - [React-Native-Responsive-FontSize][reactresponsive]
 - [React-Native-Iphone-X-Helper][iphonexhelper]
+- [AsyncStorage][asyncstorage]
+- [UUID][uuid]
 
 ## 💡 Como executar o projeto
 
@@ -86,3 +88,5 @@ Feito por Jeandson Tenorio 👋🏽 [Entre em contato!](https://www.linkedin.com
 [vector-icons]: https://github.com/oblador/react-native-vector-icons
 [reactresponsive]:https://www.npmjs.com/package/react-native-responsive-fontsize
 [iphonexhelper]:https://www.npmjs.com/package/react-native-iphone-x-helper
+[asyncstorage]:https://docs.expo.dev/versions/latest/sdk/async-storage/
+[uuid]:https://www.npmjs.com/package/react-native-uuid

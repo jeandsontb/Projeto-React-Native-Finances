@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 
 import S from './styles'
 
@@ -9,12 +10,14 @@ interface ISelectProps {
 
 export default ({title, onPress}: ISelectProps) => {
   return (
-    <S.Container onPress={onPress}>
-      <S.TextCategory>
-        {title}
-      </S.TextCategory>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <S.Container>
+        <S.TextCategory>
+          {title}
+        </S.TextCategory>
 
-      <S.IconSelect name="chevron-down" />
-    </S.Container>
+        <S.IconSelect name="chevron-down" />
+      </S.Container>
+    </TouchableWithoutFeedback>
   );
 }

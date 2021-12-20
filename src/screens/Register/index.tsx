@@ -3,6 +3,9 @@ import { Modal, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import uuid from 'react-native-uuid';
+import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/native';
 
 import S from './styles';
 import InputForm from '../../components/Forms/InputForm';
@@ -29,7 +32,10 @@ const shema = Yup.object().shape({
 
 export default () => {
 
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const {navigate}: NavigationProp<ParamListBase> = useNavigation();
+  const dataKey = '@gofinances:transactions';
+
+  const { control, handleSubmit, reset, formState: { errors } } = useForm({
     resolver: yupResolver(shema)
   });
 
@@ -52,7 +58,7 @@ export default () => {
     setCategoryModalOpen(false);
   }
 
-  const handleRegister = (form: IFormData) => {
+  const handleRegister = async (form: IFormData) => {
 
     if(!transactionType) {
       return Alert.alert('Selecione o tipo da transação');
@@ -62,14 +68,39 @@ export default () => {
       return Alert.alert('Selecione a categoria');
     }
 
-    const data = {
+    const newTransaction = {
+      id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
       transactionType,
-      category: category.key
+      category: category.key,
+      date: new Date()
     }
 
-    console.log(data);
+    try {      
+      const tempTransaction = await AsyncStorage.getItem(dataKey);
+      const verifyTempTransaction = tempTransaction ? JSON.parse(tempTransaction) : [];
+      const objectTransaction = [
+        ...verifyTempTransaction,
+        newTransaction
+      ];
+
+
+      await AsyncStorage.setItem(dataKey, JSON.stringify(objectTransaction));
+
+      reset();
+      setTransactionType('');
+      setCategory({
+        key: 'category',
+        name: 'categoria'
+      });
+
+      navigate('Listagem');
+
+    } catch (err) {
+      console.log(err);
+      Alert.alert('Não foi possível salvar');
+    }
   }
 
   return (
@@ -97,6 +128,7 @@ export default () => {
               keyboardType='numeric'
               error={errors.amount && errors.amount.message}
             />
+
 
             <S.BoxTransactionsTypes>
               <TransactionTypeButton 
