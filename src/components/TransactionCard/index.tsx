@@ -1,17 +1,13 @@
 import React from 'react';
+import { categories } from '../../utils/categories';
 
 import S from './styles';
 
-interface ICategory {
-  name: string;
-  icon: string;
-}
-
 export interface IDataTransactionCardProps {
   type: 'positive' | 'negative';
-  title: string;
+  name: string;
   amount: string;
-  category: ICategory;
+  category: string;
   date: string;
 }
 
@@ -20,9 +16,13 @@ interface IResponseProps {
 }
 
 export default ({ data }: IResponseProps) => {
+
+  const category = categories.filter(item => item.key === data.category)[0];
+  // const [category] = categories.filter(item => item.key === data.category); poderia ser assim também
+
   return (
     <S.Container>
-      <S.TextTitle>{data.title}</S.TextTitle>
+      <S.TextTitle>{data.name}</S.TextTitle>
 
       <S.TextAmount type={data.type} >
         {data.type === 'negative' && '- '}
@@ -31,8 +31,8 @@ export default ({ data }: IResponseProps) => {
 
       <S.BoxFooter>
         <S.BoxCategory>
-          <S.Icon name={data.category.icon} />
-          <S.TextCategoryName>{data.category.name}</S.TextCategoryName>
+          <S.Icon name={category.icon} />
+          <S.TextCategoryName>{category.name}</S.TextCategoryName>
         </S.BoxCategory>
 
         <S.TextDate>{data.date}</S.TextDate>

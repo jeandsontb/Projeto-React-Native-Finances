@@ -33,7 +33,6 @@ const shema = Yup.object().shape({
 export default () => {
 
   const {navigate}: NavigationProp<ParamListBase> = useNavigation();
-  const dataKey = '@gofinances:transactions';
 
   const { control, handleSubmit, reset, formState: { errors } } = useForm({
     resolver: yupResolver(shema)
@@ -78,6 +77,8 @@ export default () => {
     }
 
     try {      
+      const dataKey = '@gofinances:transactions';
+
       const tempTransaction = await AsyncStorage.getItem(dataKey);
       const verifyTempTransaction = tempTransaction ? JSON.parse(tempTransaction) : [];
       const objectTransaction = [

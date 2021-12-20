@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import HighLighCard from '../../components/HighLighCard';
 import TransactionCard, { IDataTransactionCardProps } from '../../components/TransactionCard';
@@ -10,42 +11,43 @@ export interface IDataListProps extends IDataTransactionCardProps {
 }
 
 const Dashboard = () => {
+  
+  const [data, setData] = useState<IDataListProps[]>([]);
 
-  const data: IDataListProps[] = [
-    {
-      id: '1',
-      type: 'positive',
-      title: "Desenvolvimento de site",
-      amount: "R$ 1.350,00",
-      category: {
-        name: 'Vendas',
-        icon: 'dollar-sign'
-      },
-      date: "12/12/2020"
-    },
-    {
-      id: '2',
-      type: 'negative',
-      title: "Hamburgueria",
-      amount: "R$ 1.350,00",
-      category: {
-        name: 'Alimentação',
-        icon: 'coffee'
-      },
-      date: "12/12/2020"
-    },
-    {
-      id: '3',
-      type: 'negative',
-      title: "Aluguel do apartamento",
-      amount: "R$ 1.350,00",
-      category: {
-        name: 'Vendas',
-        icon: 'shopping-bag'
-      },
-      date: "12/12/2020"
-    }
-  ];
+  useEffect(() => {
+    loadTransaction();
+  }, []);
+
+  const loadTransaction = async () => {
+    const dataKey = '@gofinances:transactions';
+    const response = await AsyncStorage.getItem(dataKey);
+    const transactions = response ? JSON.parse(response) : [];
+
+    const transactionsFormated: IDataListProps[] = transactions.map((item: IDataListProps) => {
+      const amount = Number(item.amount).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      });
+
+      const date = Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: '2-digit'
+      }).format(new Date(item.date));
+
+      return {
+        id: item.id,
+        name: item.name,
+        amount,
+        type: item.type,
+        category: item.category,
+        date,
+      }
+    })
+
+    setData(transactionsFormated);
+
+  }
 
   return (
     <S.Container >
