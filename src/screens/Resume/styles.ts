@@ -8,6 +8,11 @@ export default {
     flex: 1;
     background-color: ${({theme}) => theme.colors.background};
   `,
+  BoxLoaderContainer: styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  `,
   BoxHeader: styled.View`
     background-color: ${({theme}) => theme.colors.primary};
     width: 100%;

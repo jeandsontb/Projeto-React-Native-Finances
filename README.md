@@ -39,6 +39,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [AsyncStorage][asyncstorage]
 - [UUID][uuid]
 - [Victory][victory]
+- [Date-FNS][date]
 
 ## 💡 Como executar o projeto
 
@@ -92,3 +93,4 @@ Feito por Jeandson Tenorio 👋🏽 [Entre em contato!](https://www.linkedin.com
 [asyncstorage]:https://docs.expo.dev/versions/latest/sdk/async-storage/
 [uuid]:https://www.npmjs.com/package/react-native-uuid
 [victory]:https://formidable.com/open-source/victory/docs/native/
+[date]:https://date-fns.org/
