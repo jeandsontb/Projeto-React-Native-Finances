@@ -49,6 +49,8 @@ export default {
     color: ${({ theme, type }) => 
       type === 'total' ? theme.colors.shape : theme.colors.text_dark };
     margin-top: 38px;
+    font-size: ${RFValue(26)}px;
+    font-weight: bold;
   `,
   LastTransaction: styled.Text<ITypeProps>`
     font-family: ${({ theme }) => theme.fonts.regular};

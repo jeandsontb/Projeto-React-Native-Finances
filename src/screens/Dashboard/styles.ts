@@ -83,4 +83,9 @@ export default {
       paddingBottom: getBottomSpace() 
     }
   })``,
+  LoadingContainer: styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  `,
 }
