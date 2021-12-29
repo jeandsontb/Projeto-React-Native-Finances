@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { VictoryPie } from 'victory-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+
 import { useTheme } from 'styled-components';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 import HistoryCard from '../../components/HistoryCard';
 import S from './styles';
@@ -90,7 +92,27 @@ export default () => {
         </S.TextTitle>
       </S.BoxHeader>
 
-      <S.ScrollContent>
+      <S.ScrollContent
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          paddingBottom: useBottomTabBarHeight()
+        }}
+      >
+
+        <S.BoxMonthSelector>
+          <S.ButtonMonthSelector>
+            <S.IconMonthSelector name="chevron-left"/>
+          </S.ButtonMonthSelector>
+
+          <S.TextMonth>Dezembro</S.TextMonth>
+
+          <S.ButtonMonthSelector>
+            <S.IconMonthSelector name="chevron-right"/>
+          </S.ButtonMonthSelector>
+        </S.BoxMonthSelector>
+
+
         <S.BoxChartContainer>
           <VictoryPie 
             data={totalByCategories}
@@ -102,7 +124,7 @@ export default () => {
                 fill: theme.colors.shape
               }
             }}
-            labelRadius={60}
+            labelRadius={100}
             x="percent"
             y="total"
           />
