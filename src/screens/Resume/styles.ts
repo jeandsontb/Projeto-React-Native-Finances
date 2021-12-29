@@ -19,4 +19,10 @@ export default {
     color: ${({theme}) => theme.colors.shape};
     font-size: 18px;
   `,
+  ScrollContent: styled.ScrollView.attrs({
+    contentContainerStyle: {
+      flex: 1,
+      padding: 24
+    }
+  })``,
 }
