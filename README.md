@@ -38,6 +38,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [React-Native-Iphone-X-Helper][iphonexhelper]
 - [AsyncStorage][asyncstorage]
 - [UUID][uuid]
+- [Victory][victory]
 
 ## 💡 Como executar o projeto
 
@@ -90,3 +91,4 @@ Feito por Jeandson Tenorio 👋🏽 [Entre em contato!](https://www.linkedin.com
 [iphonexhelper]:https://www.npmjs.com/package/react-native-iphone-x-helper
 [asyncstorage]:https://docs.expo.dev/versions/latest/sdk/async-storage/
 [uuid]:https://www.npmjs.com/package/react-native-uuid
+[victory]:https://formidable.com/open-source/victory/docs/native/

@@ -25,4 +25,8 @@ export default {
       padding: 24
     }
   })``,
+  BoxChartContainer: styled.View`
+    width: 100%;
+    align-items: center;
+  `,
 }
