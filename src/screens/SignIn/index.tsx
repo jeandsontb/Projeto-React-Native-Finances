@@ -5,6 +5,7 @@ import S from './styles';
 import AppleSvg from '../../assets/apple.svg';
 import GoogleSvg from '../../assets/google.svg';
 import LogoSvg from '../../assets/logo.svg';
+import { SignInSocialButton } from "../../components/SignInSocialButton";
 
 const SignIn = () => {
   return (
@@ -30,7 +31,17 @@ const SignIn = () => {
       </S.BoxHeader>
 
       <S.BoxFooter>
+        <S.BoxFooterWrapper>
+          <SignInSocialButton 
+            title="Entrar com Google"
+            svg={GoogleSvg}
+          />
 
+          <SignInSocialButton 
+            title="Entrar com Apple"
+            svg={AppleSvg}
+          />
+        </S.BoxFooterWrapper>
       </S.BoxFooter>
     </S.Container>
   )

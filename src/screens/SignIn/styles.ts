@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { RFValue } from "react-native-responsive-fontsize";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default {
   Container: styled.View`
@@ -34,5 +34,10 @@ export default {
     width: 100%;
     height: 30%;
     background-color: ${({theme}) => theme.colors.secondary};
+  `,
+  BoxFooterWrapper: styled.View`
+    margin-top: ${RFPercentage(-4)}px;
+    padding: 0 32px;
+    justify-content: space-between;
   `,
 }
