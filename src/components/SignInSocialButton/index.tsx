@@ -1,23 +1,25 @@
 import React from 'react';
+import { TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from 'react-native';
 import { SvgProps } from 'react-native-svg';
-import { RectButtonProps } from 'react-native-gesture-handler';
 
 import S from './styles';
 
-interface IButtonProps extends RectButtonProps {
+interface IButtonProps extends TouchableWithoutFeedbackProps {
   title: string;
   svg: React.FC<SvgProps>;
 }
 
 const SignInSocialButton = ({title, svg: Svg, ...rest}: IButtonProps) => {
   return (
-    <S.ButtonSocial {...rest}>
-      <S.BoxImageContainer>
-        <Svg />
-      </S.BoxImageContainer>
+    <TouchableWithoutFeedback {...rest}>
+      <S.ButtonSocial>
+        <S.BoxImageContainer>
+          <Svg />
+        </S.BoxImageContainer>
 
-      <S.TextTitleButton>{title}</S.TextTitleButton>
-    </S.ButtonSocial>
+        <S.TextTitleButton>{title}</S.TextTitleButton>
+      </S.ButtonSocial>
+    </TouchableWithoutFeedback>
   )
 }
 
