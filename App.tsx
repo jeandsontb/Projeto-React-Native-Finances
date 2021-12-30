@@ -17,6 +17,7 @@ import {
 
 import theme from './src/global/styles/theme';
 import { AppRoutes } from './src/routes/app.routes';
+import SignIn from './src/screens/SignIn';
 
 export default function App() {
 
@@ -37,7 +38,8 @@ export default function App() {
             backgroundColor="transparent"
             translucent 
           />
-          <AppRoutes />
+          {/* <AppRoutes /> */}
+          <SignIn />
         </NavigationContainer>
       </ThemeProvider>
     );

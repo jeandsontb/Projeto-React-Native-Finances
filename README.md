@@ -40,6 +40,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [UUID][uuid]
 - [Victory][victory]
 - [Date-FNS][date]
+- [React-Native-SVG-Transform][transform]
 
 ## 💡 Como executar o projeto
 
@@ -94,3 +95,4 @@ Feito por Jeandson Tenorio 👋🏽 [Entre em contato!](https://www.linkedin.com
 [uuid]:https://www.npmjs.com/package/react-native-uuid
 [victory]:https://formidable.com/open-source/victory/docs/native/
 [date]:https://date-fns.org/
+[transform]:https://github.com/kristerkari/react-native-svg-transformer
