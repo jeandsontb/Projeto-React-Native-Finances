@@ -81,7 +81,10 @@ const Dashboard = () => {
 
     const lastTransactionsEntries = getLastTransactionDate(transactions, 'positive');
     const lastTransactionsExpensives = getLastTransactionDate(transactions, 'negative');
-    const totalInterval = `01 a ${lastTransactionsExpensives}`;
+
+    const totalInterval = lastTransactionsExpensives === 0 
+      ? 'Não há transações'
+      : `01 a ${lastTransactionsExpensives}`;
 
     const total = entriesTotal - expensiveTotal;
 
@@ -91,14 +94,18 @@ const Dashboard = () => {
           style: 'currency',
           currency: 'BRL'
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionsEntries}`
+        lastTransaction: lastTransactionsEntries === 0 
+          ? `Não há transações ` 
+          : `Última entrada dia ${lastTransactionsEntries}`
       },
       expensives: {
         amount: expensiveTotal.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL'
         }),
-        lastTransaction: `Última saída dia ${lastTransactionsExpensives}`
+        lastTransaction: lastTransactionsExpensives === 0 
+        ? `Não há transações`
+        : `Última saída dia ${lastTransactionsExpensives}`
       },
       total: {
         amount: total.toLocaleString('pt-BR', {
@@ -117,8 +124,15 @@ const Dashboard = () => {
     collection: IDataListProps[], 
     type: 'positive' | 'negative'
   ) => {
-    const lastTransactions = new Date(Math.max.apply(Math, collection
-      .filter(transaction => transaction.type === type)
+
+    const collectionFilttered = collection
+      .filter(transaction => transaction.type === type);
+
+    if(collectionFilttered.length === 0) {
+      return 0;
+    }
+
+    const lastTransactions = new Date(Math.max.apply(Math, collectionFilttered
       .map(transaction => new Date(transaction.date).getTime())));
 
     return `${lastTransactions.getDate()} de ${lastTransactions.toLocaleString(
