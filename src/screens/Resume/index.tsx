@@ -13,6 +13,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import HistoryCard from '../../components/HistoryCard';
 import S from './styles';
 import { categories } from '../../utils/categories';
+import { useAuth } from '../../hooks/auth';
 
 interface ITRansactionData {
   type: 'positive' | 'negative';
@@ -33,6 +34,7 @@ interface ICategoryData {
 
 export default () => {
 
+  const { user } = useAuth();
   const theme = useTheme();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +55,7 @@ export default () => {
 
   const loadData = async () => {
     setIsLoading(true);
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 

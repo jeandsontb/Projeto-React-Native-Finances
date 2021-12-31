@@ -13,6 +13,7 @@ import Button from '../../components/Forms/Button';
 import TransactionTypeButton from '../../components/Forms/TransactionTypeButton';
 import CategorySelectButton from '../../components/Forms/CategorySelectButton';
 import { CategorySelect } from '../CategorySelect';
+import { useAuth } from '../../hooks/auth';
 
 interface IFormData {
   name: string;
@@ -32,6 +33,7 @@ const shema = Yup.object().shape({
 
 export default () => {
 
+  const { user } = useAuth();
   const {navigate}: NavigationProp<ParamListBase> = useNavigation();
 
   const { control, handleSubmit, reset, formState: { errors } } = useForm({
@@ -77,7 +79,7 @@ export default () => {
     }
 
     try {      
-      const dataKey = '@gofinances:transactions';
+      const dataKey = `@gofinances:transactions_user:${user.id}`;
 
       const tempTransaction = await AsyncStorage.getItem(dataKey);
       const verifyTempTransaction = tempTransaction ? JSON.parse(tempTransaction) : [];
