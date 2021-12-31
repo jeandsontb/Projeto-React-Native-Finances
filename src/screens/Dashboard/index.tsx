@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, TouchableWithoutFeedback } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
 import HighLighCard from '../../components/HighLighCard';
 import TransactionCard, { IDataTransactionCardProps } from '../../components/TransactionCard';
+import { useAuth } from '../../hooks/auth';
 
 import S from './styles';
 
@@ -27,6 +28,7 @@ interface IHighlightData {
 const Dashboard = () => {
   
   const theme = useTheme();
+  const { signOut, user } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [transactions, setTransactions] = useState<IDataListProps[]>([]);
   const [highlightData, setHighlightData] = useState<IHighlightData>({} as IHighlightData);
@@ -137,16 +139,18 @@ const Dashboard = () => {
           <S.BoxHeader>
             <S.BoxComponent>
               <S.BoxUserInfo>
-                <S.Photo source={{ uri: 'https://avatars.githubusercontent.com/u/53402919?v=4' }} />
+                <S.Photo source={{ uri: user.photo }} />
                 <S.BoxUser>
                   <S.TextGreeting>Olá</S.TextGreeting>
-                  <S.TextTitleName>Jeandson</S.TextTitleName>
+                  <S.TextTitleName>{user.name}</S.TextTitleName>
                 </S.BoxUser>
               </S.BoxUserInfo>
 
-              <S.BoxLogoutButton onPress={() => {}} >
-                <S.IconPower name="power"/>
-              </S.BoxLogoutButton>
+              <TouchableWithoutFeedback onPress={signOut}>
+                <S.BoxLogoutButton>
+                  <S.IconPower name="power"/>
+                </S.BoxLogoutButton>
+              </TouchableWithoutFeedback>
 
             </S.BoxComponent>
           </S.BoxHeader>
