@@ -10,14 +10,23 @@ import { SignInSocialButton } from "../../components/SignInSocialButton";
 import { useAuth } from '../../hooks/auth';
 
 const SignIn = () => {
-  const { signInGoogle } = useAuth();
+  const { signInGoogle, signInApple } = useAuth();
 
   const handleSignInGoogle = async () => {
     try {
       await signInGoogle();
     } catch (error) {
       console.log(error);
-      Alert.alert('Não foi possível conectar a conta google');
+      Alert.alert('Opps!','Não foi possível conectar a conta google');
+    }
+  }
+
+  const handleSignInApple = async () => {
+    try {
+      await signInApple();
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Opps!','Não foi possível conectar a conta apple');
     }
   }
 
@@ -54,6 +63,7 @@ const SignIn = () => {
           <SignInSocialButton 
             title="Entrar com Apple"
             svg={AppleSvg}
+            onPress={handleSignInApple}
           />
         </S.BoxFooterWrapper>
       </S.BoxFooter>
