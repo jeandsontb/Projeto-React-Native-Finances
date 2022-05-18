@@ -1,39 +1,45 @@
-import "jest-fetch-mock";
-import fetchMock from "jest-fetch-mock";
 import { renderHook, act } from "@testing-library/react-hooks";
+import { mocked } from "ts-jest/utils";
+import { startAsync } from "expo-auth-session";
+import fetchMock from "jest-fetch-mock";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { AuthProvider, useAuth } from "../../hooks/auth";
 
-// Ativa o uso do fetch mock
+jest.mock("expo-auth-session");
+
 fetchMock.enableMocks();
 
-// Define uma resposta padrão para o response do fetch
-fetchMock.mockResponse(
-  JSON.stringify({
-    id: "test-id",
-    given_name: "John Doe",
-    email: "any@email.com",
-    picture: "any.png",
-  })
-);
-
-// Mock Auth Session do expo-auth-session
-jest.mock("expo-auth-session", () => ({
-  startAsync: () => ({
-    type: "success",
-    params: { access_token: "test-token" },
-  }),
-}));
-
 describe("Auth Hook", () => {
-  it("Deve verificar se já existe uma conta cadastrada", async () => {
+  beforeEach(async () => {
+    const userCollectionKey = "@gofinances:user";
+    await AsyncStorage.removeItem(userCollectionKey);
+  });
+
+  it("Verifica se existe uma conta", async () => {
+    const googleMocked = mocked(startAsync as any);
+    googleMocked.mockReturnValueOnce({
+      type: "success",
+      params: {
+        access_token: "any_token",
+      },
+    });
+
+    const userTest = {
+      id: "any_id",
+      email: "any@email.com",
+      name: "Any",
+      photo: "any_photo.png",
+    };
+
+    fetchMock.mockResponseOnce(JSON.stringify(userTest));
+
     const { result } = renderHook(() => useAuth(), {
       wrapper: AuthProvider,
     });
 
-    await act(async () => {
-      await result.current.signInGoogle();
-    });
-    expect(result.current.user.email).toBe("any@email.com");
+    await act(() => result.current.signInGoogle());
+
+    expect(result.current.user.email).toBeTruthy();
   });
 });
