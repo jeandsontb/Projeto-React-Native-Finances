@@ -12,8 +12,7 @@ fetchMock.enableMocks();
 
 describe("Auth Hook", () => {
   beforeEach(async () => {
-    const userCollectionKey = "@gofinances:user";
-    await AsyncStorage.removeItem(userCollectionKey);
+    await AsyncStorage.removeItem("@gofinances:user");
   });
 
   it("Verifica se existe uma conta", async () => {
