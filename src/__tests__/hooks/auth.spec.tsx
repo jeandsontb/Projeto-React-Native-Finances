@@ -41,4 +41,19 @@ describe("Auth Hook", () => {
 
     expect(result.current.user.email).toBeTruthy();
   });
+
+  it("Verifica se a conexão cancelou com o google", async () => {
+    const googleMocked = mocked(startAsync as jest.Mock);
+    googleMocked.mockReturnValueOnce({
+      type: "cancel",
+    });
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider,
+    });
+
+    await act(() => result.current.signInGoogle());
+
+    expect(result.current.user).not.toHaveProperty("id");
+  });
 });
