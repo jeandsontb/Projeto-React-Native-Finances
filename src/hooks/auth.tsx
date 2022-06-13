@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as AuthSession from "expo-auth-session";
-import * as AppleAuthentication from "expo-apple-authentication";
+// import * as AppleAuthentication from "expo-apple-authentication";
 
 interface IAuthProviderProps {
   children: ReactNode;
@@ -23,7 +23,7 @@ interface IUser {
 interface IAuthContextData {
   user: IUser;
   signInGoogle(): Promise<void>;
-  signInApple(): Promise<void>;
+  // signInApple(): Promise<void>;
   signOut(): Promise<void>;
   userStorageLoading: boolean;
 }
@@ -91,32 +91,32 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
     }
   };
 
-  const signInApple = async () => {
-    try {
-      const credential = await AppleAuthentication.signInAsync({
-        requestedScopes: [
-          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-          AppleAuthentication.AppleAuthenticationScope.EMAIL,
-        ],
-      });
+  // const signInApple = async () => {
+  //   try {
+  //     const credential = await AppleAuthentication.signInAsync({
+  //       requestedScopes: [
+  //         AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+  //         AppleAuthentication.AppleAuthenticationScope.EMAIL,
+  //       ],
+  //     });
 
-      if (credential) {
-        const name = credential.fullName!.givenName!;
-        const photo = `https://ui-avatars.com/api/?name=${name}&length=1`;
+  //     if (credential) {
+  //       const name = credential.fullName!.givenName!;
+  //       const photo = `https://ui-avatars.com/api/?name=${name}&length=1`;
 
-        const userLogged = {
-          id: String(credential.user),
-          email: credential.email!,
-          name,
-          photo,
-        };
-        setUser(userLogged);
-        await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
-      }
-    } catch (e) {
-      throw new Error(e as string);
-    }
-  };
+  //       const userLogged = {
+  //         id: String(credential.user),
+  //         email: credential.email!,
+  //         name,
+  //         photo,
+  //       };
+  //       setUser(userLogged);
+  //       await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
+  //     }
+  //   } catch (e) {
+  //     throw new Error(e as string);
+  //   }
+  // };
 
   const signOut = async () => {
     setUser({} as IUser);
@@ -125,7 +125,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signInGoogle, signInApple, signOut, userStorageLoading }}
+      value={{ user, signInGoogle, signOut, userStorageLoading }}
     >
       {children}
     </AuthContext.Provider>
